@@ -1,4 +1,4 @@
-package ua.kpi.lab1.model;
+package ua.kpi.lab1.model.course;
 
 public enum CourseName {
     PHYSICS,
