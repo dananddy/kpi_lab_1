@@ -17,6 +17,8 @@ public class Controller {
     }
 
     public void proccesUser(){
+        Scanner scanner = new Scanner(System.in);
+
 
     }
 }
