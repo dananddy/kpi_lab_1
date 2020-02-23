@@ -3,7 +3,7 @@ package ua.kpi.lab1.controller;
 import ua.kpi.lab1.model.Model;
 import ua.kpi.lab1.view.View;
 
-import java.util.Scanner;
+
 
 public class Controller {
     Model model;
@@ -17,8 +17,9 @@ public class Controller {
     }
 
     public void proccesUser(){
-        Scanner scanner = new Scanner(System.in);
+        OutputData outputData = new OutputData(view);
 
+        outputData.outData();
 
     }
 }

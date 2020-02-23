@@ -8,21 +8,28 @@ public class Zalikovka {
 
     private int idStudent;
 
-    private String firstNameStudent;
-    private String lastNameStudent;
-    private String middleNameStudent;
+    private String NameStudent;
+
 
     List<Course> course;
 
-    public Zalikovka(int idStudent,List<Course> courses,String ... studentName){
+    public Zalikovka(int idStudent,List<Course> courses,String studentName){
         this.idStudent = idStudent;
-        this.lastNameStudent = studentName[0];
-        this.firstNameStudent = studentName[1];
-        this.middleNameStudent = studentName[2];
+        this.NameStudent = studentName;
+
 
         this.course = courses;
     }
 
+    public int getIdStudent() {
+        return idStudent;
+    }
 
+    public String getNameStudent() {
+        return NameStudent;
+    }
 
+    public List<Course> getCourse() {
+        return course;
+    }
 }

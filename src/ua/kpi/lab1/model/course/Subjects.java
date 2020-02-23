@@ -12,4 +12,12 @@ public class Subjects {
         this.gradeSubject = gradeSubject;
         this.isExam = isExam;
     }
+
+    public String getNameSubject() {
+        return nameSubject;
+    }
+
+    public int getGradeSubject() {
+        return gradeSubject;
+    }
 }
