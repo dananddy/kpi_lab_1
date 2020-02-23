@@ -3,16 +3,16 @@ package ua.kpi.lab1.model.StudentNames;
 import java.util.Random;
 
 public enum StudentLastName {
-    PETRIVICH,
-    ADAMOVICH,
-    VIKTOROVICH,
-    MIKHAYLOVICH,
-    DANIELOVICH,
-    IGOREVICH,
-    ROMANOVICH,
-    PILIPOVICH,
-    GEKTOROVICH,
-    PHILOSOVICH;
+    OPANASENKO,
+    IVANOV,
+    SMITH,
+    JOHNSONS,
+    VENSOM,
+    WAYNE,
+    MUSK,
+    RABINOVICH,
+    ZELENSKIY,
+    POROSHENKO;
     private static final StudentLastName[] STUDEN_NAME = values();
     private static final int SIZE = STUDEN_NAME.length;
     private static final Random RANDOM = new Random();

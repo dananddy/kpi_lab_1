@@ -1,5 +1,6 @@
-package ua.kpi.lab1.controller;
+package ua.kpi.lab1.view;
 
+import ua.kpi.lab1.model.Model;
 import ua.kpi.lab1.model.Zalikovka;
 import ua.kpi.lab1.model.course.Course;
 import ua.kpi.lab1.model.course.Subjects;
@@ -10,23 +11,25 @@ import java.util.List;
 import static ua.kpi.lab1.view.View.*;
 
 public class OutputData {
-    UtilityController utilityController = new UtilityController();
-    View view;
 
-    public OutputData(View view){
+    View view;
+    Model model;
+
+    public OutputData(View view, Model model){
         this.view = view;
+        this.model = model;
     }
 
-    public void outData(){
-        List<Zalikovka> zalikovkas;
+    public void outZalikovka(List<Zalikovka> zalikovkas){
 
-        utilityController.createZalikovkaBase(View.NUMBER_OF_ZALIKOVKA,View.NUMBER_OF_COURSES, numberOfSubjects());
-        zalikovkas = utilityController.getZalikovkasList();
+        zalikovkaZalikovkaShow(zalikovkas);
 
+    }
+    public void zalikovkaZalikovkaShow(List<Zalikovka> zalikovkas) {
         view.printAllZalikovkas();
         for (Zalikovka zalikovka: zalikovkas){
             System.out.println (zalikovka.getIdStudent()+"\t\t"+
-                                zalikovka.getNameStudent());
+                    zalikovka.getNameStudent());
             zalikovkaCourseShow(zalikovka.getCourse());
             view.printMessage(TABLE_SIGN);
         }
@@ -45,8 +48,19 @@ public class OutputData {
 
         }
     }
+    public void outStudentGoodGradeShow(List<String> students) {
+        try {
+            for (String student: students){
+                System.out.println (student+'\n');
 
-    private int numberOfSubjects() {
-        return (int) (Math.random()*(NUMBER_SUBJECT_MAX - NUMBER_SUBJECT_MIN + 1) + NUMBER_SUBJECT_MIN);
+            }
+
+        }catch (NullPointerException e){
+            System.out.println("none");
+        }
+
     }
+
+
+
 }
