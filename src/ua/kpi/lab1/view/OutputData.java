@@ -1,5 +1,6 @@
 package ua.kpi.lab1.view;
 
+import javafx.util.Pair;
 import ua.kpi.lab1.model.Model;
 import ua.kpi.lab1.model.Zalikovka;
 import ua.kpi.lab1.model.course.Course;
@@ -28,7 +29,7 @@ public class OutputData {
     public void zalikovkaZalikovkaShow(List<Zalikovka> zalikovkas) {
         view.printAllZalikovkas();
         for (Zalikovka zalikovka: zalikovkas){
-            System.out.println (zalikovka.getIdStudent()+"\t\t"+
+            System.out.println (zalikovka.getNumZalikovka()+"\t\t"+zalikovka.getIdStudent()+"\t\t"+
                     zalikovka.getNameStudent());
             zalikovkaCourseShow(zalikovka.getCourse());
             view.printMessage(TABLE_SIGN);
@@ -44,23 +45,34 @@ public class OutputData {
 
     private void zalikovkaSubjectShow(List<Subjects> subjects) {
         for (Subjects subject: subjects){
-            System.out.println ("\t\t\t\t\t\t\t\t\t\t\t\t\t"+subject.getNameSubject()+"\t\t"+subject.getGradeSubject());
+            System.out.println ("\t\t\t\t\t\t\t\t\t\t\t\t\t"+subject.getNameSubject()+" ("+getExamOfSubject(subject)+")"+"\t\t"+subject.getGradeSubject());
 
         }
     }
-    public void outStudentGoodGradeShow(List<String> students) {
-        try {
-            for (String student: students){
-                System.out.println (student+'\n');
+
+    private String getExamOfSubject(Subjects subject) {
+        return (subject.getExamSubject()) ? "Exam" : "Test";
+    }
+
+    public void outStudentGoodGradeShow(List<Pair> students) {
+
+        if(students == null) System.out.println("None of the Students have average grade higher then 4.5");
+        else{
+            for (Pair student: students){
+                System.out.println (student.getKey()+" Grade: "+student.getValue()+'\n');
 
             }
-
-        }catch (NullPointerException e){
-            System.out.println("none");
         }
 
     }
 
+    public void outSubjectsIsExamShow(List<String> subjects) {
+
+        for (String subject: subjects){
+            System.out.println (subject);
+
+        }
+    }
 
 
 }

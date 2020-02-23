@@ -10,15 +10,17 @@ public class Zalikovka {
 
     private String NameStudent;
 
+    private int numZalikovka;
+
 
     List<Course> course;
 
-    public Zalikovka(int idStudent,List<Course> courses,String studentName){
+    public Zalikovka(int idStudent,List<Course> courses,String studentName, int numZalikovka){
         this.idStudent = idStudent;
         this.NameStudent = studentName;
-
-
         this.course = courses;
+
+        this.numZalikovka = numZalikovka;
     }
 
     public int getIdStudent() {
@@ -31,5 +33,9 @@ public class Zalikovka {
 
     public List<Course> getCourse() {
         return course;
+    }
+
+    public int getNumZalikovka() {
+        return numZalikovka;
     }
 }

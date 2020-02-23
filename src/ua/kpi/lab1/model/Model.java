@@ -4,19 +4,18 @@ import ua.kpi.lab1.model.StudentNames.StudentFullName;
 import ua.kpi.lab1.model.course.Course;
 import ua.kpi.lab1.model.course.CourseName;
 import ua.kpi.lab1.model.course.Subjects;
-import ua.kpi.lab1.view.View;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static ua.kpi.lab1.view.View.*;
 
 
 public class Model {
 
-    View view;
-
-
+    private Random random = new Random();
     private List<Zalikovka> zalikovkas= new ArrayList<>();;
 
 
@@ -34,7 +33,7 @@ public class Model {
         for(int count = 0; count< numberOfZalikovka; count++) {
             Zalikovka zalikovka = new Zalikovka(creatorId(),
                     creatorListOfCourses(),
-                    creatorNameStudent());
+                    creatorNameStudent(), count+1);
             zalikovkas.add(zalikovka);
         }
     }
@@ -61,7 +60,7 @@ public class Model {
     }
 
     private int creatorOfSubjectGrade() {
-        return (int) (Math.random()*(NUMBER_MAX_GRADE - NUMBER_MIN + 1) + 4);
+        return (int) (Math.random()*(NUMBER_MAX_GRADE - NUMBER_MIN + 1) + NUMBER_MIN);
     }
 
     private String creatorOfSubjectName() {

@@ -12,30 +12,26 @@ import static ua.kpi.lab1.view.View.NUMBER_GOOD_GRADE_STUDENT;
 
 public class ProcceesModel {
 
-
+    private List<Pair> studentGoodGradeList= new ArrayList<>();
 
     public ProcceesModel( ){
 
     }
 
-    public void getAllStudentsAverGrade(List<Zalikovka> zalikovkas){
-        List<String> studentGoodGradeList= null;
+    public List<Pair> getAllStudentsAverGrade(List<Zalikovka> zalikovkas){
+
         Pair nameStudentAndAverGrade;
 
         for(Zalikovka zalikovka: zalikovkas){
-            nameStudentAndAverGrade = getAverageGradeStudent(zalikovka);
+            nameStudentAndAverGrade = averageGradeStudent(zalikovka);
             if (((double) nameStudentAndAverGrade.getValue()) >= NUMBER_GOOD_GRADE_STUDENT){
-                studentGoodGradeList.add((String)nameStudentAndAverGrade.getKey());
+                studentGoodGradeList.add(nameStudentAndAverGrade);
             }
         }
-        for (String student: studentGoodGradeList){
-            System.out.println (student+'\n');
-
-        }
-        //return studentGoodGradeList;
+        return studentGoodGradeList;
     }
 
-    private Pair getAverageGradeStudent(Zalikovka zalikovka){
+    private Pair averageGradeStudent(Zalikovka zalikovka){
         Pair nameStudentAndAverGrade;
         int countSubjects =0;
         double averageGrade = 0;
@@ -49,5 +45,20 @@ public class ProcceesModel {
         nameStudentAndAverGrade = new Pair(zalikovka.getNameStudent(), averageGrade);
         return nameStudentAndAverGrade;
     }
+
+    public List<String> getSubjectExamList(int numberZalikovka,List<Zalikovka> zalikovkas){
+        Zalikovka zalikovka = zalikovkas.get(numberZalikovka - 1);
+        return subjectExamList(zalikovka);
+    }
+    private List<String> subjectExamList(Zalikovka zalikovka){
+        List<String> isExamSubjectsList = new ArrayList<>();
+        for(Course course: zalikovka.getCourse()){
+            for (Subjects subject: course.getSubject()){
+                if(subject.getExamSubject()) isExamSubjectsList.add("(Year: "+course.getCourseNumber()+")"+subject.getNameSubject());
+            }
+        }
+        return isExamSubjectsList;
+    }
+
 
 }

@@ -20,4 +20,7 @@ public class Subjects {
     public int getGradeSubject() {
         return gradeSubject;
     }
+    public boolean getExamSubject(){
+        return isExam;
+    }
 }
