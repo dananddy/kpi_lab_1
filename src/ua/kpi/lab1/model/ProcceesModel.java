@@ -3,6 +3,7 @@ package ua.kpi.lab1.model;
 import javafx.util.Pair;
 import ua.kpi.lab1.model.course.Course;
 import ua.kpi.lab1.model.course.Subjects;
+import ua.kpi.lab1.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,10 @@ import static ua.kpi.lab1.view.View.NUMBER_GOOD_GRADE_STUDENT;
 public class ProcceesModel {
 
     private List<Pair> studentGoodGradeList= new ArrayList<>();
+    View view;
 
-    public ProcceesModel( ){
-
+    public ProcceesModel(View view ){
+        this.view = view;
     }
 
     public List<Pair> getAllStudentsAverGrade(List<Zalikovka> zalikovkas){
@@ -29,7 +31,7 @@ public class ProcceesModel {
             }
         }
         if(studentGoodGradeList.isEmpty()) {
-            System.out.println("None of the Students have average grade higher then 4.5");
+            view.printMessage(View.NONE_STUDENT_GOOD_GRADE);
             return studentGoodGradeList;
         }
         else return studentGoodGradeList;
@@ -53,7 +55,7 @@ public class ProcceesModel {
     public List<String> getSubjectExamList(int numberZalikovka,List<Zalikovka> zalikovkas){
 
         return (numberZalikovka-1 >= zalikovkas.size()) ?
-                subjectExamList("No such Zalikovka!"): subjectExamList(zalikovkas.get(numberZalikovka-1));
+                subjectExamList(View.NONE_ZALIKOVKA): subjectExamList(zalikovkas.get(numberZalikovka-1));
 
 
     }
@@ -61,11 +63,11 @@ public class ProcceesModel {
         List<String> isExamSubjectsList = new ArrayList<>();
         for(Course course: zalikovka.getCourse()){
             for (Subjects subject: course.getSubject()){
-                if(subject.getExamSubject()) isExamSubjectsList.add("(Year: "+course.getCourseNumber()+")"+subject.getNameSubject());
+                if(subject.getExamSubject()) isExamSubjectsList.add(view.getExamList(course.getCourseNumber(),subject.getNameSubject()));
             }
         }
         if(isExamSubjectsList.isEmpty()) {
-            System.out.println("Student had not any exams!");
+            view.printMessage(View.NONE_EXAMS);
             return isExamSubjectsList;
         }
         return isExamSubjectsList;

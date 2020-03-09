@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Controller {
     Model model;
     View view;
-    ProcceesModel procceesModel = new ProcceesModel();
+
 
     List<Zalikovka> zalikovkas;
     List<Pair> studentGoodGradeList;
@@ -26,9 +26,8 @@ public class Controller {
     }
 
     public void proccesUser(){
-        OutputData outputData = new OutputData(view,model);
-
-
+        OutputData outputData = new OutputData(view);
+        ProcceesModel procceesModel = new ProcceesModel(view);
 
         model.createZalikovkas();
 
@@ -39,12 +38,12 @@ public class Controller {
         studentGoodGradeList = procceesModel.getAllStudentsAverGrade(zalikovkas);
         outputData.outStudentGoodGradeShow(studentGoodGradeList);
 
-        isExamSubjectList = inputUserZalikovka();
+        isExamSubjectList = inputUserZalikovka(procceesModel);
         outputData.outSubjectsIsExamShow(isExamSubjectList);
 
     }
 
-    private List<String> inputUserZalikovka() {
+    private List<String> inputUserZalikovka(ProcceesModel procceesModel) {
         Scanner scanner = new Scanner(System.in);
 
         List<String> isExamSubjectList;

@@ -5,7 +5,7 @@ import ua.kpi.lab1.model.Model;
 import ua.kpi.lab1.model.Zalikovka;
 import ua.kpi.lab1.model.course.Course;
 import ua.kpi.lab1.model.course.Subjects;
-import ua.kpi.lab1.view.View;
+
 
 import java.util.List;
 
@@ -14,11 +14,8 @@ import static ua.kpi.lab1.view.View.*;
 public class OutputData {
 
     View view;
-    Model model;
-
-    public OutputData(View view, Model model){
+    public OutputData(View view){
         this.view = view;
-        this.model = model;
     }
 
     public void outZalikovka(List<Zalikovka> zalikovkas){
@@ -30,7 +27,7 @@ public class OutputData {
         view.printAllZalikovkas();
         view.printMessage(TABLE_SIGN);
         for (Zalikovka zalikovka: zalikovkas){
-            System.out.format ("%-3s|%-8s|%-30s|\n",zalikovka.getNumZalikovka(),zalikovka.getIdStudent(),
+            System.out.format (FORMATED_TOP_TABLE,zalikovka.getNumZalikovka(),zalikovka.getIdStudent(),
                     zalikovka.getNameStudent());
             zalikovkaCourseShow(zalikovka.getCourse());
             view.printMessage(TABLE_SIGN);
@@ -39,31 +36,30 @@ public class OutputData {
 
     private void zalikovkaCourseShow(List<Course> courses) {
         for (Course course: courses){
-            System.out.format("%3s|%8s|%30s: \n","","",course.getCourseNumber());
+            System.out.format(FORMATED_COURSE_DISPLAY,EMPTY,EMPTY,course.getCourseNumber());
             zalikovkaSubjectShow(course.getSubject());
         }
     }
 
     private void zalikovkaSubjectShow(List<Subjects> subjects) {
         for (Subjects subject: subjects){
-            System.out.format ("%3s|%8s|%30s|%-20s (%4s) - %3d\n","","","",subject.getNameSubject(),getExamOfSubject(subject),subject.getGradeSubject());
+            System.out.format (FORMATED_SUBJECT_DISPLAY,EMPTY,EMPTY,EMPTY,subject.getNameSubject(),getExamOfSubject(subject),subject.getGradeSubject());
 
         }
     }
 
     private String getExamOfSubject(Subjects subject) {
-        return (subject.getExamSubject()) ? "Exam" : "Test";
+        return (subject.getExamSubject()) ? IF_EXAM: IF_TEST;
     }
 
     public void outStudentGoodGradeShow(List<Pair> students) {
-        for (Pair student: students){ System.out.format ("%-30s  %.1f\n",student.getKey(),student.getValue());}
+        for (Pair student: students){ System.out.format (FORMATED_GRADE_DISPLAY,student.getKey(),student.getValue());}
     }
 
     public void outSubjectsIsExamShow(List<String> subjects) {
 
         for (String subject: subjects){
-            System.out.println (subject);
-
+            view.printMessage(subject);
         }
     }
 
