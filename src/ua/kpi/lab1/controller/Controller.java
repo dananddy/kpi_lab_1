@@ -42,12 +42,13 @@ public class Controller {
         studentGoodGradeList = procceesModel.getAllStudentsAverGrade(zalikovkas);
         outputData.outStudentGoodGradeShow(studentGoodGradeList);
 
-        view.printMessageInputNumberZalikovka();
+        view.printMessageInputNumberZalikovka(zalikovkas);
+
         while (scanner.hasNextInt()){
             int numberZalikovka = scanner.nextInt();
             isExamSubjectList = inputUserZalikovka(procceesModel, numberZalikovka);
             outputData.outSubjectsIsExamShow(isExamSubjectList);
-            view.printMessageInputNumberZalikovkaIfAgain();
+            view.printMessageInputNumberZalikovkaIfAgain(zalikovkas);
         }
 
 

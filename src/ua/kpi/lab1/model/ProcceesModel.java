@@ -8,7 +8,7 @@ import ua.kpi.lab1.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ua.kpi.lab1.view.View.NUMBER_GOOD_GRADE_STUDENT;
+import static ua.kpi.lab1.view.View.*;
 
 
 public class ProcceesModel {
@@ -31,7 +31,7 @@ public class ProcceesModel {
             }
         }
         if(studentGoodGradeList.isEmpty()) {
-            view.printMessage(View.NONE_STUDENT_GOOD_GRADE);
+            view.printMessage(NONE_STUDENT_GOOD_GRADE);
             return studentGoodGradeList;
         }
         else return studentGoodGradeList;
@@ -55,7 +55,7 @@ public class ProcceesModel {
     public List<String> getSubjectExamList(int numberZalikovka,List<Zalikovka> zalikovkas){
 
         return ((numberZalikovka-1 >= zalikovkas.size()) || (numberZalikovka-1 <0)) ?
-                subjectExamList(View.NONE_ZALIKOVKA): subjectExamList(zalikovkas.get(numberZalikovka-1));
+                subjectExamList(NONE_ZALIKOVKA): subjectExamList(zalikovkas.get(numberZalikovka-1));
 
 
     }
@@ -67,7 +67,7 @@ public class ProcceesModel {
             }
         }
         if(isExamSubjectsList.isEmpty()) {
-            view.printMessage(View.NONE_EXAMS);
+            view.printMessage(NONE_EXAMS);
             return isExamSubjectsList;
         }
         return isExamSubjectsList;
