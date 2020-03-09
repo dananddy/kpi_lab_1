@@ -49,8 +49,8 @@ public class Controller {
 
         List<String> isExamSubjectList;
         view.printMessageInputNumberZalikovka();
-        int numberOfZalikovka = scanner.nextInt();
-        isExamSubjectList = procceesModel.getSubjectExamList(numberOfZalikovka,zalikovkas);
+        int numberZalikovka = scanner.nextInt();
+        isExamSubjectList = procceesModel.getSubjectExamList(numberZalikovka,zalikovkas);
         return isExamSubjectList;
     }
 }

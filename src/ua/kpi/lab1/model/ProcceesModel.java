@@ -51,9 +51,11 @@ public class ProcceesModel {
     }
 
     public List<String> getSubjectExamList(int numberZalikovka,List<Zalikovka> zalikovkas){
-        Zalikovka zalikovka = zalikovkas.get(numberZalikovka - 1);
 
-        return subjectExamList(zalikovka);
+        return (numberZalikovka-1 >= zalikovkas.size()) ?
+                subjectExamList("No such Zalikovka!"): subjectExamList(zalikovkas.get(numberZalikovka-1));
+
+
     }
     private List<String> subjectExamList(Zalikovka zalikovka){
         List<String> isExamSubjectsList = new ArrayList<>();
@@ -67,6 +69,11 @@ public class ProcceesModel {
             return isExamSubjectsList;
         }
         return isExamSubjectsList;
+    }
+    private List<String> subjectExamList(String message){
+        List<String> list = new ArrayList<>();
+        list.add(message);
+        return list;
     }
 
 
