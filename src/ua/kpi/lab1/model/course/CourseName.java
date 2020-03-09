@@ -1,6 +1,7 @@
 package ua.kpi.lab1.model.course;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public enum CourseName {
@@ -21,29 +22,36 @@ public enum CourseName {
     ENGINEERING
     ;
     private static final CourseName[] COURSE_NAMES = values();
-    private static final int SIZE = COURSE_NAMES.length;
+
     private static final Random RANDOM = new Random();
 
+    private static final int SIZE = COURSE_NAMES.length;
+    public static ArrayList<String> getRandomNameCourseAsString(int numberOfSubjects){
 
+        ArrayList<String> subjectList = new ArrayList<>();
 
+        ArrayList<Integer> listOfValuesOfSubjectRandom = getRandomSubject(numberOfSubjects);
 
-    /*for(int i = 1; i <= SIZE; i++) {
-        list.add(i);
-    }*/
-    //can return same subject if: return COURSE_NAMES[RANDOM.nextInt(SIZE)];
-    public static String getRandomNameCourseAsString(){
-
-        return String.valueOf(COURSE_NAMES[RANDOM.nextInt(SIZE)]);
+        for (int count=0; count<numberOfSubjects; count++)subjectList.add(
+                String.valueOf(COURSE_NAMES[listOfValuesOfSubjectRandom.get(count)]));
+        return subjectList;
     }
 
+    private static ArrayList<Integer> getRandomSubject(int numberOfSubjects){
 
+        ArrayList<Integer> listOfValuesOfSubjectInOrder = new ArrayList<>();
+        ArrayList<Integer> listOfValuesOfSubjectRandom = new ArrayList<>();
 
-    //want it to not return same subject
-    /*private static int randSubjectNumber(){
+        for(int i = 0; i < SIZE; i++) {
+            listOfValuesOfSubjectInOrder.add(i);
+        }
+        while (!listOfValuesOfSubjectInOrder.isEmpty()){
+            int index =listOfValuesOfSubjectInOrder.get(RANDOM.nextInt(listOfValuesOfSubjectInOrder.size()));
+            listOfValuesOfSubjectRandom.add(index);
+            listOfValuesOfSubjectInOrder.remove(new Integer(index));
+        }
 
-        int index = RANDOM.nextInt(list.size());//
-        list.remove(index);
-        return index;
+        return listOfValuesOfSubjectRandom;
+    }
 
-    }*/
 }

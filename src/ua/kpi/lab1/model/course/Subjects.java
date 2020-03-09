@@ -13,14 +13,11 @@ public class Subjects {
         this.isExam = isExam;
     }
 
-    public String getNameSubject() {
-        return nameSubject;
-    }
+    public String getNameSubject() {return nameSubject;}
 
     public int getGradeSubject() {
         return gradeSubject;
     }
-    public boolean getExamSubject(){
-        return isExam;
-    }
+
+    public boolean getExamSubject(){return isExam;}
 }

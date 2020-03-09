@@ -28,7 +28,11 @@ public class ProcceesModel {
                 studentGoodGradeList.add(nameStudentAndAverGrade);
             }
         }
-        return studentGoodGradeList;
+        if(studentGoodGradeList.isEmpty()) {
+            System.out.println("None of the Students have average grade higher then 4.5");
+            return studentGoodGradeList;
+        }
+        else return studentGoodGradeList;
     }
 
     private Pair averageGradeStudent(Zalikovka zalikovka){
@@ -48,6 +52,7 @@ public class ProcceesModel {
 
     public List<String> getSubjectExamList(int numberZalikovka,List<Zalikovka> zalikovkas){
         Zalikovka zalikovka = zalikovkas.get(numberZalikovka - 1);
+
         return subjectExamList(zalikovka);
     }
     private List<String> subjectExamList(Zalikovka zalikovka){
@@ -56,6 +61,10 @@ public class ProcceesModel {
             for (Subjects subject: course.getSubject()){
                 if(subject.getExamSubject()) isExamSubjectsList.add("(Year: "+course.getCourseNumber()+")"+subject.getNameSubject());
             }
+        }
+        if(isExamSubjectsList.isEmpty()) {
+            System.out.println("Student had not any exams!");
+            return isExamSubjectsList;
         }
         return isExamSubjectsList;
     }

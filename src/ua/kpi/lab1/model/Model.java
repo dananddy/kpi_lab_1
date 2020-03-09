@@ -42,36 +42,35 @@ public class Model {
     private List<Course> creatorListOfCourses() {
         List<Course> courses= new ArrayList<>();
         for (int count =1; count<=numberOfCourses(); count++){
-            courses.add(new Course(count,creatorSubject(numberOfSubjects())));
+            courses.add(new Course(count,creatorSubject()));
         }
         return courses;
 
     }
 
-    private List<Subjects> creatorSubject(int numberOfSubjects) {
+    private List<Subjects> creatorSubject() {
         List<Subjects> subjects = new ArrayList<>();
 
-        for (int count =1; count<=numberOfSubjects; count++){
-            subjects.add(new Subjects(creatorOfSubjectName(),
-                    creatorOfSubjectGrade(),
-                    creatorOfExam()));
+        int numberOfSubjects = numberOfSubjects();
+
+        ArrayList<String> subjectList = creatorOfSubjectNames(numberOfSubjects);
+
+        for (int count =0; count<numberOfSubjects; count++){
+            subjects.add(new Subjects(subjectList.get(count),creatorOfSubjectGrade(),creatorOfExam()));
         }
         return subjects;
     }
-
-    private int creatorOfSubjectGrade() {
-        return (int) (Math.random()*(NUMBER_MAX_GRADE - NUMBER_MIN + 1) + NUMBER_MIN);
-    }
-
-    private String creatorOfSubjectName() {
-        return CourseName.getRandomNameCourseAsString();
+    private ArrayList<String> creatorOfSubjectNames(int numberOfSubjects) {
+        return CourseName.getRandomNameCourseAsString(numberOfSubjects);
     }
 
     private boolean creatorOfExam(){
         int flag = (int)Math.round(Math.random());
         return flag != 0;
     }
-
+    private int creatorOfSubjectGrade() {
+        return (int) (Math.random()*(NUMBER_MAX_GRADE - NUMBER_MIN_GRADE + 1) + NUMBER_MIN_GRADE);
+    }
 
     private String creatorNameStudent() {
         StudentFullName studentFullName = new StudentFullName();

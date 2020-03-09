@@ -28,8 +28,9 @@ public class OutputData {
     }
     public void zalikovkaZalikovkaShow(List<Zalikovka> zalikovkas) {
         view.printAllZalikovkas();
+        view.printMessage(TABLE_SIGN);
         for (Zalikovka zalikovka: zalikovkas){
-            System.out.println (zalikovka.getNumZalikovka()+"\t\t"+zalikovka.getIdStudent()+"\t\t"+
+            System.out.format ("%-3s|%-8s|%-30s|\n",zalikovka.getNumZalikovka(),zalikovka.getIdStudent(),
                     zalikovka.getNameStudent());
             zalikovkaCourseShow(zalikovka.getCourse());
             view.printMessage(TABLE_SIGN);
@@ -38,14 +39,14 @@ public class OutputData {
 
     private void zalikovkaCourseShow(List<Course> courses) {
         for (Course course: courses){
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t"+course.getCourseNumber()+"\t\t\t");
+            System.out.format("%3s|%8s|%30s: \n","","",course.getCourseNumber());
             zalikovkaSubjectShow(course.getSubject());
         }
     }
 
     private void zalikovkaSubjectShow(List<Subjects> subjects) {
         for (Subjects subject: subjects){
-            System.out.println ("\t\t\t\t\t\t\t\t\t\t\t\t\t"+subject.getNameSubject()+" ("+getExamOfSubject(subject)+")"+"\t\t"+subject.getGradeSubject());
+            System.out.format ("%3s|%8s|%30s|%-20s (%4s) - %3d\n","","","",subject.getNameSubject(),getExamOfSubject(subject),subject.getGradeSubject());
 
         }
     }
@@ -55,15 +56,7 @@ public class OutputData {
     }
 
     public void outStudentGoodGradeShow(List<Pair> students) {
-
-        if(students == null) System.out.println("None of the Students have average grade higher then 4.5");
-        else{
-            for (Pair student: students){
-                System.out.println (student.getKey()+" Grade: "+student.getValue()+'\n');
-
-            }
-        }
-
+        for (Pair student: students){ System.out.format ("%-30s  %.1f\n",student.getKey(),student.getValue());}
     }
 
     public void outSubjectsIsExamShow(List<String> subjects) {
