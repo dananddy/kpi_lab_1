@@ -13,7 +13,8 @@ import static ua.kpi.lab1.view.View.*;
 
 public class OutputData {
 
-    View view;
+    private View view;
+
     public OutputData(View view){
         this.view = view;
     }
@@ -23,7 +24,8 @@ public class OutputData {
         zalikovkaZalikovkaShow(zalikovkas);
 
     }
-    public void zalikovkaZalikovkaShow(List<Zalikovka> zalikovkas) {
+
+    private void zalikovkaZalikovkaShow(List<Zalikovka> zalikovkas) {
         view.printAllZalikovkas();
         view.printMessage(TABLE_SIGN);
         for (Zalikovka zalikovka: zalikovkas){

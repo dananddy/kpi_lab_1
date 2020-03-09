@@ -23,6 +23,7 @@ public class View {
     public static final String TABLE_SIGN = "_____________________________________________________________________________";
 
     public static final String INPUT_NUMBER_ZALIKOVKA= "Enter the number of zalikovka to find your exams:";
+    public static final String INPUT_NUMBER_ZALIKOVKA_AGAIN= "If you want to see exmas of other student\nenter the number of zalikovka\nIf you want to exit - press any non-numirical symbol\nEnter the number of zalikovka to find your exams:";
     public static final String NONE_STUDENT_GOOD_GRADE = "None of the Students have average grade higher then 4.5";
     public static final String NONE_ZALIKOVKA = "No such Zalikovka!";
     public static final String NONE_EXAMS = "Student had not any exams!";
@@ -44,6 +45,7 @@ public class View {
     public void printTableOfZalikovka(){System.out.format("%3s|%8s|%29s|%20s (%4s) - %3s\n","№","ID","STUDENT NAME","COURSE","SUBJECT","","GRADE");}
 
     public void printMessageInputNumberZalikovka(){System.out.println(INPUT_NUMBER_ZALIKOVKA);}
+    public void printMessageInputNumberZalikovkaIfAgain(){System.out.println(INPUT_NUMBER_ZALIKOVKA_AGAIN);}
 
     public void printMessage(String message){System.out.println(message);}
 

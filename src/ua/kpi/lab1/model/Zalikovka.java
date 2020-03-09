@@ -6,14 +6,13 @@ import java.util.List;
 
 public class Zalikovka {
 
+    private int numZalikovka;
+
     private int idStudent;
 
     private String NameStudent;
 
-    private int numZalikovka;
-
-
-    List<Course> course;
+    private List<Course> course;
 
     public Zalikovka(int idStudent,List<Course> courses,String studentName, int numZalikovka){
         this.idStudent = idStudent;

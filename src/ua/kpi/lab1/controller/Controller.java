@@ -12,13 +12,11 @@ import java.util.Scanner;
 
 
 public class Controller {
-    Model model;
-    View view;
+    private Model model;
+    private View view;
 
 
-    List<Zalikovka> zalikovkas;
-    List<Pair> studentGoodGradeList;
-    List<String> isExamSubjectList;
+    private List<Zalikovka> zalikovkas;
 
     public Controller(View view, Model model){
         this.view = view;
@@ -26,8 +24,14 @@ public class Controller {
     }
 
     public void proccesUser(){
+
+        Scanner scanner = new Scanner(System.in);
         OutputData outputData = new OutputData(view);
         ProcceesModel procceesModel = new ProcceesModel(view);
+
+        List<Pair> studentGoodGradeList;
+        List<String> isExamSubjectList;
+
 
         model.createZalikovkas();
 
@@ -38,17 +42,20 @@ public class Controller {
         studentGoodGradeList = procceesModel.getAllStudentsAverGrade(zalikovkas);
         outputData.outStudentGoodGradeShow(studentGoodGradeList);
 
-        isExamSubjectList = inputUserZalikovka(procceesModel);
-        outputData.outSubjectsIsExamShow(isExamSubjectList);
+        view.printMessageInputNumberZalikovka();
+        while (scanner.hasNextInt()){
+            int numberZalikovka = scanner.nextInt();
+            isExamSubjectList = inputUserZalikovka(procceesModel, numberZalikovka);
+            outputData.outSubjectsIsExamShow(isExamSubjectList);
+            view.printMessageInputNumberZalikovkaIfAgain();
+        }
+
 
     }
 
-    private List<String> inputUserZalikovka(ProcceesModel procceesModel) {
-        Scanner scanner = new Scanner(System.in);
-
+    private List<String> inputUserZalikovka(ProcceesModel procceesModel, int numberZalikovka) {
         List<String> isExamSubjectList;
-        view.printMessageInputNumberZalikovka();
-        int numberZalikovka = scanner.nextInt();
+
         isExamSubjectList = procceesModel.getSubjectExamList(numberZalikovka,zalikovkas);
         return isExamSubjectList;
     }

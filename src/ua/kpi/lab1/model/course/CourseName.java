@@ -22,22 +22,20 @@ public enum CourseName {
     ENGINEERING
     ;
     private static final CourseName[] COURSE_NAMES = values();
-
     private static final Random RANDOM = new Random();
-
     private static final int SIZE = COURSE_NAMES.length;
+
     public static ArrayList<String> getRandomNameCourseAsString(int numberOfSubjects){
 
         ArrayList<String> subjectList = new ArrayList<>();
-
-        ArrayList<Integer> listOfValuesOfSubjectRandom = getRandomSubject(numberOfSubjects);
+        ArrayList<Integer> listOfValuesOfSubjectRandom = getRandomSubject();
 
         for (int count=0; count<numberOfSubjects; count++)subjectList.add(
                 String.valueOf(COURSE_NAMES[listOfValuesOfSubjectRandom.get(count)]));
         return subjectList;
     }
 
-    private static ArrayList<Integer> getRandomSubject(int numberOfSubjects){
+    private static ArrayList<Integer> getRandomSubject(){
 
         ArrayList<Integer> listOfValuesOfSubjectInOrder = new ArrayList<>();
         ArrayList<Integer> listOfValuesOfSubjectRandom = new ArrayList<>();
@@ -50,7 +48,6 @@ public enum CourseName {
             listOfValuesOfSubjectRandom.add(index);
             listOfValuesOfSubjectInOrder.remove(new Integer(index));
         }
-
         return listOfValuesOfSubjectRandom;
     }
 

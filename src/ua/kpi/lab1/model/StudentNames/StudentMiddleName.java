@@ -22,6 +22,7 @@ public enum StudentMiddleName {
     public static StudentMiddleName getRandomStudentName()  {
         return STUDEN_NAME[RANDOM.nextInt(SIZE)];
     }
+
     public static String getRandomMiddleNameStudentAsString(){
         return String.valueOf(StudentMiddleName.getRandomStudentName());
     }

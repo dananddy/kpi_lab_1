@@ -4,18 +4,15 @@ import ua.kpi.lab1.model.StudentNames.StudentFullName;
 import ua.kpi.lab1.model.course.Course;
 import ua.kpi.lab1.model.course.CourseName;
 import ua.kpi.lab1.model.course.Subjects;
-
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 import static ua.kpi.lab1.view.View.*;
 
 
 public class Model {
 
-    private Random random = new Random();
     private List<Zalikovka> zalikovkas= new ArrayList<>();;
 
 

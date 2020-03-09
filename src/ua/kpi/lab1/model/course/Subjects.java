@@ -4,9 +4,11 @@ import javafx.util.Pair;
 import java.util.List;
 
 public class Subjects {
+
     private String nameSubject;
     private int gradeSubject;
     private boolean isExam;
+
     public Subjects(String nameSubject,int  gradeSubject,boolean isExam){
         this.nameSubject = nameSubject;
         this.gradeSubject = gradeSubject;
@@ -14,10 +16,8 @@ public class Subjects {
     }
 
     public String getNameSubject() {return nameSubject;}
-
     public int getGradeSubject() {
         return gradeSubject;
     }
-
     public boolean getExamSubject(){return isExam;}
 }

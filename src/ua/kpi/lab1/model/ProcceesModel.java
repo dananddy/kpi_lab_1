@@ -54,7 +54,7 @@ public class ProcceesModel {
 
     public List<String> getSubjectExamList(int numberZalikovka,List<Zalikovka> zalikovkas){
 
-        return (numberZalikovka-1 >= zalikovkas.size()) ?
+        return ((numberZalikovka-1 >= zalikovkas.size()) || (numberZalikovka-1 <0)) ?
                 subjectExamList(View.NONE_ZALIKOVKA): subjectExamList(zalikovkas.get(numberZalikovka-1));
 
 
