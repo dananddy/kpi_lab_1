@@ -1,15 +1,14 @@
 package ua.kpi.lab1.view;
 
 import javafx.util.Pair;
-import ua.kpi.lab1.model.Model;
-import ua.kpi.lab1.model.Zalikovka;
-import ua.kpi.lab1.model.course.Course;
-import ua.kpi.lab1.model.course.Subjects;
+import ua.kpi.lab1.Entities.Zalikovka;
+import ua.kpi.lab1.Entities.Course.Course;
+import ua.kpi.lab1.Entities.Subjects;
 
 
 import java.util.List;
 
-import static ua.kpi.lab1.view.View.*;
+import static ua.kpi.lab1.view.DataConst.*;
 
 public class OutputData {
 

@@ -1,4 +1,4 @@
-package ua.kpi.lab1.model.StudentNames;
+package ua.kpi.lab1.Entities.StudentNames;
 
 import java.util.Random;
 

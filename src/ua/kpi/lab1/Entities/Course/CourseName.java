@@ -1,7 +1,6 @@
-package ua.kpi.lab1.model.course;
+package ua.kpi.lab1.Entities.Course;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public enum CourseName {
@@ -21,6 +20,7 @@ public enum CourseName {
     IPZ,
     ENGINEERING
     ;
+    //14
     private static final CourseName[] COURSE_NAMES = values();
     private static final Random RANDOM = new Random();
     private static final int SIZE = COURSE_NAMES.length;

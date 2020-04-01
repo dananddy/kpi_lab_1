@@ -1,6 +1,6 @@
-package ua.kpi.lab1.model.course;
+package ua.kpi.lab1.Entities.Course;
 
-import javafx.util.Pair;
+import ua.kpi.lab1.Entities.Subjects;
 
 import java.util.List;
 

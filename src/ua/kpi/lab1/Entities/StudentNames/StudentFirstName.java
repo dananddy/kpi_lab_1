@@ -1,6 +1,4 @@
-package ua.kpi.lab1.model.StudentNames;
-
-import ua.kpi.lab1.model.course.CourseName;
+package ua.kpi.lab1.Entities.StudentNames;
 
 import java.util.Random;
 

@@ -1,90 +1,86 @@
 package ua.kpi.lab1.model;
 
-import ua.kpi.lab1.model.StudentNames.StudentFullName;
-import ua.kpi.lab1.model.course.Course;
-import ua.kpi.lab1.model.course.CourseName;
-import ua.kpi.lab1.model.course.Subjects;
+import javafx.util.Pair;
+import ua.kpi.lab1.Entities.Course.Course;
+import ua.kpi.lab1.Entities.Subjects;
+import ua.kpi.lab1.Entities.Zalikovka;
+import ua.kpi.lab1.view.View;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
-import static ua.kpi.lab1.view.View.*;
+import static ua.kpi.lab1.view.DataConst.*;
 
 
 public class Model {
 
-    private List<Zalikovka> zalikovkas= new ArrayList<>();;
+    private List<Pair> studentGoodGradeList= new ArrayList<>();
+    View view;
 
-
-    public void createZalikovkas(){
-
-        createZalikovkaBase(numberOfZalikovkas());
-
+    public Model(View view ){
+        this.view = view;
     }
 
-    public List<Zalikovka> getZalikovkas(){
-        return zalikovkas;
-    }
+    public List<Pair> getAllStudentsAverGrade(List<Zalikovka> zalikovkas){
 
-    public void createZalikovkaBase(int numberOfZalikovka){
-        for(int count = 0; count< numberOfZalikovka; count++) {
-            Zalikovka zalikovka = new Zalikovka(creatorId(),
-                    creatorListOfCourses(),
-                    creatorNameStudent(), count+1);
-            zalikovkas.add(zalikovka);
+        Pair nameStudentAndAverGrade;
+
+        for(Zalikovka zalikovka: zalikovkas){
+            nameStudentAndAverGrade = averageGradeStudent(zalikovka);
+            if (((double) nameStudentAndAverGrade.getValue()) >= NUMBER_GOOD_GRADE_STUDENT){
+                studentGoodGradeList.add(nameStudentAndAverGrade);
+            }
         }
-    }
-
-
-    private List<Course> creatorListOfCourses() {
-        List<Course> courses= new ArrayList<>();
-        for (int count =1; count<=numberOfCourses(); count++){
-            courses.add(new Course(count,creatorSubject()));
+        if(studentGoodGradeList.isEmpty()) {
+            view.printMessage(NONE_STUDENT_GOOD_GRADE);
+            return studentGoodGradeList;
         }
-        return courses;
-
+        else return studentGoodGradeList;
     }
 
-    private List<Subjects> creatorSubject() {
-        List<Subjects> subjects = new ArrayList<>();
-
-        int numberOfSubjects = numberOfSubjects();
-
-        ArrayList<String> subjectList = creatorOfSubjectNames(numberOfSubjects);
-
-        for (int count =0; count<numberOfSubjects; count++){
-            subjects.add(new Subjects(subjectList.get(count),creatorOfSubjectGrade(),creatorOfExam()));
+    private Pair averageGradeStudent(Zalikovka zalikovka){
+        Pair nameStudentAndAverGrade;
+        int countSubjects =0;
+        double averageGrade = 0;
+        for(Course course: zalikovka.getCourse()){
+            for (Subjects subject: course.getSubject()){
+                averageGrade +=subject.getGradeSubject();
+                countSubjects++;
+            }
         }
-        return subjects;
-    }
-    private ArrayList<String> creatorOfSubjectNames(int numberOfSubjects) {
-        return CourseName.getRandomNameCourseAsString(numberOfSubjects);
-    }
-
-    private boolean creatorOfExam(){
-        int flag = (int)Math.round(Math.random());
-        return flag != 0;
-    }
-    private int creatorOfSubjectGrade() {
-        return (int) (Math.random()*(NUMBER_MAX_GRADE - NUMBER_MIN_GRADE + 1) + NUMBER_MIN_GRADE);
+        averageGrade= averageGrade / countSubjects;
+        nameStudentAndAverGrade = new Pair(zalikovka.getNameStudent(), averageGrade);
+        return nameStudentAndAverGrade;
     }
 
-    private String creatorNameStudent() {
-        StudentFullName studentFullName = new StudentFullName();
-        return studentFullName.getNameStudentFull();
+    public List<String> getSubjectExamList(int numberZalikovka,List<Zalikovka> zalikovkas){
+
+        return ((numberZalikovka-1 >= zalikovkas.size()) || (numberZalikovka-1 <0)) ?
+                subjectExamList(NONE_ZALIKOVKA): subjectExamList(zalikovkas.get(numberZalikovka-1));
+
+
+    }
+    private List<String> subjectExamList(Zalikovka zalikovka){
+        List<String> isExamSubjectsList = new ArrayList<>();
+        for(Course course: zalikovka.getCourse()){
+            for (Subjects subject: course.getSubject()){
+                if(subject.getExamSubject()) isExamSubjectsList.add(getExamList(course.getCourseNumber(),subject.getNameSubject()));
+            }
+        }
+        if(isExamSubjectsList.isEmpty()) {
+            view.printMessage(NONE_EXAMS);
+            return isExamSubjectsList;
+        }
+        return isExamSubjectsList;
+    }
+    private List<String> subjectExamList(String message){
+        List<String> list = new ArrayList<>();
+        list.add(message);
+        return list;
+    }
+    public String getExamList(int courseNumber, String subjectName){
+        return "(Year "+courseNumber+")"+subjectName;
     }
 
-    private int creatorId() {
-        return (int) (Math.random()*(NUMBER_ID_MAX - NUMBER_ID_MIN + 1) + NUMBER_ID_MIN);
-    }
 
-    private int numberOfZalikovkas() {
-        return (int) (Math.random()*(NUMBER_ZALIKOVKA_MAX - NUMBER_ZALIKOVKA_MIN + 1) + NUMBER_ZALIKOVKA_MIN);
-    }
-    private int numberOfCourses() {
-        return (int) (Math.random()*(NUMBER_COURSES_MAX - NUMBER_COURSES_MIN + 1) + NUMBER_COURSES_MIN);
-    }
-    private int numberOfSubjects() {
-        return (int) (Math.random()*(NUMBER_SUBJECT_MAX - NUMBER_SUBJECT_MIN + 1) + NUMBER_SUBJECT_MIN);
-    }
 }

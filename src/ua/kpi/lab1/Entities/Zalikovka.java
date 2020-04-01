@@ -1,6 +1,6 @@
-package ua.kpi.lab1.model;
+package ua.kpi.lab1.Entities;
 
-import ua.kpi.lab1.model.course.Course;
+import ua.kpi.lab1.Entities.Course.Course;
 
 import java.util.List;
 

@@ -2,8 +2,7 @@ package ua.kpi.lab1.controller;
 
 import javafx.util.Pair;
 import ua.kpi.lab1.model.Model;
-import ua.kpi.lab1.model.ProcceesModel;
-import ua.kpi.lab1.model.Zalikovka;
+import ua.kpi.lab1.Entities.Zalikovka;
 import ua.kpi.lab1.view.OutputData;
 import ua.kpi.lab1.view.View;
 
@@ -12,41 +11,41 @@ import java.util.Scanner;
 
 
 public class Controller {
-    private Model model;
+    private DataGen dataGen;
     private View view;
 
 
     private List<Zalikovka> zalikovkas;
 
-    public Controller(View view, Model model){
+    public Controller(View view, DataGen dataGen){
         this.view = view;
-        this.model = model;
+        this.dataGen = dataGen;
     }
 
     public void proccesUser(){
 
         Scanner scanner = new Scanner(System.in);
         OutputData outputData = new OutputData(view);
-        ProcceesModel procceesModel = new ProcceesModel(view);
+        Model model = new Model(view);
 
         List<Pair> studentGoodGradeList;
         List<String> isExamSubjectList;
 
 
-        model.createZalikovkas();
+        dataGen.createZalikovkas();
 
-        zalikovkas = model.getZalikovkas();
+        zalikovkas = dataGen.getZalikovkas();
 
         outputData.outZalikovka(zalikovkas);
 
-        studentGoodGradeList = procceesModel.getAllStudentsAverGrade(zalikovkas);
+        studentGoodGradeList = model.getAllStudentsAverGrade(zalikovkas);
         outputData.outStudentGoodGradeShow(studentGoodGradeList);
 
         view.printMessageInputNumberZalikovka(zalikovkas);
 
         while (scanner.hasNextInt()){
             int numberZalikovka = scanner.nextInt();
-            isExamSubjectList = inputUserZalikovka(procceesModel, numberZalikovka);
+            isExamSubjectList = inputUserZalikovka(model, numberZalikovka);
             outputData.outSubjectsIsExamShow(isExamSubjectList);
             view.printMessageInputNumberZalikovkaIfAgain(zalikovkas);
         }
@@ -54,10 +53,10 @@ public class Controller {
 
     }
 
-    private List<String> inputUserZalikovka(ProcceesModel procceesModel, int numberZalikovka) {
+    private List<String> inputUserZalikovka(Model model, int numberZalikovka) {
         List<String> isExamSubjectList;
 
-        isExamSubjectList = procceesModel.getSubjectExamList(numberZalikovka,zalikovkas);
+        isExamSubjectList = model.getSubjectExamList(numberZalikovka,zalikovkas);
         return isExamSubjectList;
     }
 }
