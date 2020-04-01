@@ -4,12 +4,9 @@ import ua.kpi.lab1.Entities.Zalikovka;
 
 import java.util.List;
 
-import static ua.kpi.lab1.view.DataConst.*;
+import static ua.kpi.lab1.view.DataOutput.*;
 
 public class View {
-
-
-
 
     public void printTableOfZalikovka(){System.out.format("%-2s|%-8s|%-24s%5s|%3s  %3s\n","№","ID","STUDENT NAME","COURSE","SUBJECT","","GRADE");}
 
@@ -19,7 +16,5 @@ public class View {
     public void printMessage(String message){System.out.println(message);}
 
     public void printAllZalikovkas()  {printTableOfZalikovka();}
-
-
 
 }

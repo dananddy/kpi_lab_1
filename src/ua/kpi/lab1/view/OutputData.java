@@ -8,7 +8,7 @@ import ua.kpi.lab1.Entities.Subjects;
 
 import java.util.List;
 
-import static ua.kpi.lab1.view.DataConst.*;
+import static ua.kpi.lab1.view.DataOutput.*;
 
 public class OutputData {
 

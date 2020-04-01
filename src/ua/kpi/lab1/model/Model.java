@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ua.kpi.lab1.view.DataConst.*;
+import static ua.kpi.lab1.view.DataOutput.*;
 
 
 public class Model {
@@ -79,7 +80,7 @@ public class Model {
         return list;
     }
     public String getExamList(int courseNumber, String subjectName){
-        return "(Year "+courseNumber+")"+subjectName;
+        return YEAR +courseNumber+PERENS+subjectName;
     }
 
 
